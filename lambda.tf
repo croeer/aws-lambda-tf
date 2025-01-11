@@ -20,7 +20,9 @@ resource "aws_lambda_function" "this" {
   handler = var.handler_name
   runtime = var.runtime
 
-  role = aws_iam_role.lambda_exec.arn
+  role        = aws_iam_role.lambda_exec.arn
+  memory_size = var.memory_size
+  layers      = var.layers
 
   dynamic "environment" {
     for_each = length(keys(var.environment_variables)) == 0 ? [] : [true]

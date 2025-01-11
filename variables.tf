@@ -23,3 +23,15 @@ variable "environment_variables" {
   type        = map(string)
   default     = { "TZ" = "Europe/Berlin" }
 }
+
+variable "memory_size" {
+  description = "The amount of memory in MB allocated to the lambda function"
+  type        = number
+  default     = 128
+}
+
+variable "layers" {
+  description = "A list of ARNs of lambda layers to attach to the function"
+  type        = list(string)
+  default     = []
+}
