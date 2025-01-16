@@ -24,6 +24,8 @@ resource "aws_lambda_function" "this" {
   memory_size = var.memory_size
   layers      = var.layers
 
+  package_type = "Zip"
+
   dynamic "environment" {
     for_each = length(keys(var.environment_variables)) == 0 ? [] : [true]
     content {
@@ -31,6 +33,13 @@ resource "aws_lambda_function" "this" {
     }
   }
 
+}
+
+resource "aws_lambda_function_url" "lambda_url" {
+  count = var.create_function_url ? 1 : 0
+  
+  function_name      = aws_lambda_function.this.function_name
+  authorization_type = "NONE"
 }
 
 resource "aws_iam_role" "lambda_exec" {

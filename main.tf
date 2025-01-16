@@ -9,3 +9,7 @@ output "lambda_function_name" {
 output "iam_role_name" {
   value = aws_iam_role.lambda_exec.name
 }
+
+output "function_url" {
+  value = aws_lambda_function_url.lambda_url[0].url
+}

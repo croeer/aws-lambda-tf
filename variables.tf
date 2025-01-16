@@ -35,3 +35,9 @@ variable "layers" {
   type        = list(string)
   default     = []
 }
+
+variable "create_function_url" {
+  description = "Whether to create a URL for the lambda function"
+  type        = bool
+  default     = false
+}
