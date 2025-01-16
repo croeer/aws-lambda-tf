@@ -11,5 +11,5 @@ output "iam_role_name" {
 }
 
 output "function_url" {
-  value = aws_lambda_function_url.lambda_url[0].url
+  value = aws_lambda_function_url.lambda_url[0].function_url
 }
