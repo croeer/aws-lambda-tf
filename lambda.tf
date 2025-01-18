@@ -37,9 +37,18 @@ resource "aws_lambda_function" "this" {
 
 resource "aws_lambda_function_url" "lambda_url" {
   count = var.create_function_url ? 1 : 0
-  
+
   function_name      = aws_lambda_function.this.function_name
   authorization_type = "NONE"
+  cors {
+    allow_credentials = true
+    allow_origins     = ["*"]
+    allow_methods     = ["*"]
+    allow_headers     = ["date", "keep-alive"]
+    expose_headers    = ["keep-alive", "date"]
+    max_age           = 86400
+  }
+
 }
 
 resource "aws_iam_role" "lambda_exec" {
