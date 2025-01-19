@@ -11,6 +11,7 @@ resource "aws_lambda_function" "this" {
   role        = aws_iam_role.lambda_exec.arn
   memory_size = var.memory_size
   layers      = var.layers
+  timeout     = var.timeout
 
   package_type = "Zip"
 

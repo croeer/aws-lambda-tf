@@ -41,3 +41,9 @@ variable "create_function_url" {
   type        = bool
   default     = false
 }
+
+variable "timeout" {
+  description = "The timeout for the lambda function"
+  type        = number
+  default     = 3
+}
