@@ -1,20 +1,8 @@
 data "aws_caller_identity" "current" {}
 
-resource "aws_s3_bucket" "lambda-bucket" {
-  bucket = "lambda-${var.function_name}-${data.aws_caller_identity.current.account_id}"
-}
-
-resource "aws_s3_object" "package" {
-  bucket = aws_s3_bucket.lambda-bucket.bucket
-  key    = "${var.function_name}.zip"
-  source = var.zipfile_name
-  etag   = filemd5(var.zipfile_name)
-}
-
 resource "aws_lambda_function" "this" {
   function_name    = var.function_name
-  s3_bucket        = aws_s3_bucket.lambda-bucket.bucket
-  s3_key           = aws_s3_object.package.key
+  filename         = var.zipfile_name
   source_code_hash = filebase64sha256(var.zipfile_name)
 
   handler = var.handler_name
