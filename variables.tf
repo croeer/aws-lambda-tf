@@ -47,3 +47,9 @@ variable "timeout" {
   type        = number
   default     = 3
 }
+
+variable "tags" {
+  description = "A map of tags to assign to the lambda function"
+  type        = map(string)
+  default     = {}
+}

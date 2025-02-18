@@ -15,6 +15,8 @@ resource "aws_lambda_function" "this" {
 
   package_type = "Zip"
 
+  tags = var.tags
+
   dynamic "environment" {
     for_each = length(keys(var.environment_variables)) == 0 ? [] : [true]
     content {
